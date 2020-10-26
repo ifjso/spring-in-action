@@ -9,63 +9,50 @@
   <form method="POST" th:action="@{/orders}" th:object="${order}">
     <h1>Order your taco creations!</h1>
 
-    <span class="validationError"
-          th:if="${#fields.hasErrors('ingredients')}"
-          th:error="*{ingredients}">Ingredient Error</span>
+    <img th:src="@{/images/TacoCloud.png}"/>
+    <a th:href="@{/design}" id="another">Design another taco</a><br/>
 
-    <div class="grid">
-      <div class="ingredient-group" id="wraps">
-        <h3>Designate your wrap:</h3>
-        <div th:each="ingredient : ${wrap}">
-          <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
-          <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-        </div>
-      </div>
-
-      <div class="ingredient-group" id="proteins">
-        <h3>Pick your protein:</h3>
-        <div th:each="ingredient : ${protein}">
-          <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
-          <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-        </div>
-      </div>
-
-      <div class="ingredient-group" id="cheeses">
-        <h3>Choose your cheese:</h3>
-        <div th:each="ingredient : ${cheese}">
-          <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
-          <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-        </div>
-      </div>
-
-      <div class="ingredient-group" id="veggies">
-        <h3>Determine your veggies:</h3>
-        <div th:each="ingredient : ${veggies}">
-          <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
-          <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-        </div>
-      </div>
-
-      <div class="ingredient-group" id="sauces">
-        <h3>Select your sauce:</h3>
-        <div th:each="ingredient : ${sauce}">
-          <input name="ingredients" type="checkbox" th:value="${ingredient.id}"/>
-          <span th:text="${ingredient.name}">INGREDIENT</span><br/>
-        </div>
-      </div>
+    <div th:if="${#fields.hasErrors()}">
+      <span class="validationError">
+        Please correct the problems below and resubmit.
+      </span>
     </div>
 
-    <div>
-      <h3>Name your taco creation:</h3>
-      <input type="text" th:field="*{name}"/>
-      <span th:text="${#fields.hasErrors('name')}">XXX</span>
-      <span class="validationError"
-            th:if="${#fields.hasErrors('name')}"
-            th:errors="*{name}">Name Error</span>
-      <br/>
+    <h3>Deliver my taco masterpieces to...</h3>
 
-      <button>Submit your taco</button>
-    </div>
+    <label for="deliveryName">Name: </label>
+    <input type="text" th:field="*{deliveryName}"/>
+    <br/>
+
+    <label for="deliveryStreet">Street address: </label>
+    <input type="text" th:field="*{deliveryStreet}"/>
+    <br/>
+
+    <label for="deliveryCity">City: </label>
+    <input type="text" th:field="*{deliveryCity}"/>
+    <br/>
+
+    <label for="deliveryState">State: </label>
+    <input type="text" th:field="*{deliveryState}"/>
+    <br/>
+
+    <label for="deliveryZip">Zip code: </label>
+    <input type="text" th:field="*{deliveryZip}"/>
+    <br/>
+
+    <h3>Here's how I'll pay...</h3>
+    <label for="ccNumber">Credit Card #: </label>
+    <input type="text" th:field="*{ccNumber}"/>
+    <br/>
+    <label for="ccExpiration">Expiration: </label>
+    <input type="text" th:field="*{ccExpiration}"/>
+    <br/>
+
+    <label for="ccCVV">CVV: </label>
+    <input type="text" th:field="*{ccCVV}"/>
+    <br/>
+
+    <input type="submit" value="Submit order"/>
   </form>
 </body>
 </html>
